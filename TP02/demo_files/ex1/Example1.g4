@@ -1,6 +1,6 @@
 //define a lexical analyser called Example1
 
-lexer grammar Exemple1;
+lexer grammar Example1;
 
 OP : '+'| '*' | '-' | '/' ;
 DIGIT : [0-9] ;
