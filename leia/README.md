@@ -31,5 +31,4 @@ python3 ../asm.py hello.s && ../LEIA -f hello.obj
 
 
 ## ISA:
-The ISA of our asm is disponible here:
-http://perso.citi-lab.fr/fdedinec/enseignement/2016/isa2016.pdf
+The ISA of our asm is in the cource  documentation.
