@@ -21,7 +21,7 @@ Authors : Pierre Oechsel and Guillaume Duboc, ENSL.
 - then ./LEIA {-f,-s,-q} /path/to/example.obj
 
 ## TEST DISTRIB
-cd EX 
+cd EX/
 
 #### simple simulation step by step:
 python3 ../asm.py tp1-simple.s && ../LEIA -s tp1-simple.obj
