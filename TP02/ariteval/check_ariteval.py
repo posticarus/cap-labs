@@ -3,9 +3,12 @@ import os
 import sys
 import subprocess
 
+PRINT_DEBUG = True
+
 def debug(*args):
     """Like print(), but on stderr."""
-    print(*args, file=sys.stderr)
+    if PRINT_DEBUG:
+        print(*args, file=sys.stderr)
 
 def parse_specifications():
     """Parse the LaTeX file of the course to use as an example input
@@ -142,10 +145,14 @@ def all_checks(code_path, test_files):
     debug()
     return csv_line
 
+
+HELP_OPTIONS = {'-h', '-help', '--h', '--help'}
+QUIET_OPTIONS = {'-q', '--quiet'}
 def main():
-    if set(sys.argv) & {'-h', '-help', '--h', '--help'}:
-        print('Syntax: {} path/to/code [path/to/testfile1 [path/to/testfile2 [...]]'
-                .format(sys.argv[0]))
+    args = list(sys.argv)
+    if set(args) & HELP_OPTIONS:
+        print('Syntax: {} [-q|--quiet] path/to/code [path/to/testfile1 [path/to/testfile2 [...]]'
+                .format(args[0]))
         print()
         print('path/to/code should contain a Makefile with a "run" target '
               'that runs an interpreter of AritEval.')
@@ -166,11 +173,14 @@ def main():
         print('When comparing the expected output with the actual output, '
               'whitespaces are stripped to avoid silly false negatives.')
         return
+    if set(args) & QUIET_OPTIONS:
+        PRINT_DEBUG = False
+        args = [x for x in args if x not in QUIET_OPTIONS]
     try:
-        (_, code_path, *test_files) = sys.argv
+        (_, code_path, *test_files) = args
     except ValueError:
         print('Syntax: {} path/to/code [path/to/testfile1 [path/to/testfile2 [...]]'
-                .format(sys.argv[0]))
+                .format(args[0]))
         exit(1)
 
     csv_line = all_checks(code_path, test_files)

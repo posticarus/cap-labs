@@ -1,5 +1,5 @@
-PACKAGE = ITE
 MAINFILE = main
+PACKAGE = ITE
 ANTLR4 = java -jar /home/laure/Installs_boulot/antlr-4.7-complete.jar
 
 all: $(PACKAGE).g4

@@ -1,9 +1,10 @@
-PACKAGE = Exemple1b
 MAINFILE = main
+PACKAGE = Exemple1b
 
-#utiliser un makefile inclus, à faire.
-#ANTLR4 = java -jar $(HOME)/lib/antlr-4.7-complete.jar
-ANTLR4 = java -jar $(HOME)/Installs_boulot/antlr-4.7-complete.jar
+ifndef ANTLR4
+abort:
+	$(error variable ANTLR4 is not set)
+endif
 
 all: $(PACKAGE).g4
 	$(ANTLR4) $^ -Dlanguage=Python3

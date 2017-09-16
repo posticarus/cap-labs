@@ -1,0 +1,5 @@
+OP=1
+DIGIT=2
+LETTER=3
+ID=4
+WS=5
