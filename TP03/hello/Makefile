@@ -1,6 +1,10 @@
 PACKAGE = Hello
 MAINFILE = main
-ANTLR4 = java -jar /home/laure/Installs_boulot/antlr-4.7-complete.jar
+
+ifndef ANTLR4
+abort:
+	$(error variable ANTLR4 is not set)
+endif
 
 all: $(PACKAGE).g4
 	$(ANTLR4) $^ -Dlanguage=Python3

@@ -2,14 +2,14 @@ PACKAGE = AritPlot
 MAINFILE = arit
 FOO?=ex/ex01.txt
 
-ANTLR4=java -jar ~/Installs_boulot/antlr-4.7-complete.jar
+ifndef ANTLR4
+abort:
+	$(error variable ANTLR4 is not set)
+endif
+
 
 all: $(PACKAGE).g4
 	$(ANTLR4) $^ -Dlanguage=Python3 -visitor
-
-#ANTLR_MK = ../../../antlr/
-#include $(ANTLR_MK)/antlr.mk
-#this file doesn't exist in the repo
 
 
 run: $(MAINFILE).py
