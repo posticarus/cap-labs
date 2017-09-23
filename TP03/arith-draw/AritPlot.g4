@@ -12,7 +12,7 @@ statement:
     ;
 
 expr:
-    | expr mdop=(MULT | DIV) expr       #multiplicationExpr
+	expr mdop=(MULT | DIV) expr       #multiplicationExpr
     | expr pmop=(PLUS | MINUS) expr     #additiveExpr
     | atom                              #atomExpr
     ;
