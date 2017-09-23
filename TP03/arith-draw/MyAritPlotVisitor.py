@@ -16,12 +16,10 @@ class MyAritPlotVisitor(AritPlotVisitor):
         self._debug = debug
 
     def visitStatementList(self, ctx):  # method overriding in Python
-        n = len(ctx.statement())
-        if self._debug:
-            print("Program with " + str(n) + " instructions.")
         for ins in ctx.statement():
             self.visit(ins)
-        self._myg.showPicture()
+        if len(self._myg._lines) != 0:
+            self._myg.showPicture()
 
     def visitPrintPlotInstr(self, ctx):
         pass
@@ -30,13 +28,13 @@ class MyAritPlotVisitor(AritPlotVisitor):
         val = self.visit(ctx.expr())
         name = ctx.ID().getText()
         if self._debug:
-            print('now ' + name + ' has value ' + str(val))
+            print(name + ' <- %.2f' % val)
         self._memory[name] = val
 
     def visitExprInstr(self, ctx):
         val = self.visit(ctx.expr())
         if self._debug:
-            print('expr instr, value is ' + str(val))
+            print('exprvalue = %.2f' % val)
         return val
 
     def visitQuitInstr(self, ctx):

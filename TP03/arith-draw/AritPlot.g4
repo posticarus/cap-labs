@@ -40,6 +40,15 @@ INT:        [0-9]+;
 
 FLOAT: [0-9]+;
 
-COMMENT:    '#' ~[\r\n]* -> skip;
-NEWLINE:    '\r'? '\n' -> skip;
-WS  :       (' '|'\t')+  -> skip;
+
+COMMENT
+ : '#' ~[\r\n]* -> skip
+ ;
+
+SPACE
+ : [ \t\r\n] -> skip
+ ;
+
+OTHER
+ : . 
+ ;

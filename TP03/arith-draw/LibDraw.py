@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from tkinter import Tk, Frame, Canvas
+import sys
 
 # API for DrawPict language, CAP mini-project 2017
 # Laure Gonnord, aug 2017
@@ -20,17 +21,18 @@ class Line:  # a line
 
 
 class LibDraw:
-    def __init__(self, h, w, debug):
+    def __init__(self, h, w, debug, show):
         self._bc = "lightgray"
         self._pixWidth = w+30
         self._pixHeight = h+30
         self._lines = []
         self._debug = debug
+        self._show = show
 
     def drawLine(self, line, g2):
         if self._debug:
-            print('printing line from ('+str(line.x1)+','+str(line.y1) +
-                  ' to ('+str(line.x2)+','+str(line.y2)+')')
+            print('line:({:.2f},{:.2f})->({:.2f},{:.2f})'
+                  .format(line.x1, line.x2, line.y1, line.y2))
         g2.create_line([line.x1, line.y1, line.x2, line.y2])
 
     def addLine(self, x1, y1, x2, y2):  # add a line
@@ -42,12 +44,15 @@ class LibDraw:
 
     # Main function:  show the Frame.
     def showPicture(self):
-        root = Tk()
-        app = Frame(master=root)
-        app.master.title("DrawPict Interpret, 2017")
-        w = Canvas(root, width=self._pixWidth, height=self._pixHeight)
-        # now print all lines
-        for line in self._lines:
-            self.drawLine(line, w)
-        w.pack()
-        app.mainloop()
+        if self._show:
+            root = Tk()
+            app = Frame(master=root)
+            app.master.title("DrawPict Interpret, 2017")
+            w = Canvas(root, width=self._pixWidth, height=self._pixHeight)
+            # now print all lines
+            for line in self._lines:
+                self.drawLine(line, w)
+            w.pack()
+            app.mainloop()
+        else:
+            pass
