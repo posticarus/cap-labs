@@ -10,16 +10,17 @@ abort:
 endif
 
 
-all: $(PACKAGE).g4
+$(PACKAGE)Listener.py $(PACKAGE)Visitor.py $(PACKAGE)Lexer.py $(PACKAGE)Lexer.tokens $(PACKAGE)Parser.py $(PACKAGE).tokens: $(PACKAGE).g4
 	$(ANTLR4) $^ -Dlanguage=Python3 -visitor
 
+main-deps: $(PACKAGE)Lexer.py $(PACKAGE)Parser.py MyAritPlotVisitor.py
 
-run: $(MAINFILE).py
+run: $(MAINFILE).py main-deps
 	@python3 $^  $(FOO)
 
 
 # tests all files in the ex/ directory
-tests: test_aritplot.py
+tests: test_aritplot.py main-deps
 	python3 $< 
 
 
