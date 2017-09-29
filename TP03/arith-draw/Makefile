@@ -26,9 +26,9 @@ run: $(MAINFILE).py
 tests: test_aritplot.py main-deps
 	python3 $< 
 
-# creates an archive of your arit-draw folder with your name
+# creates an archive of your arith-draw folder with your name
 tar: clean
-	cd ..; tar cvfz $(MYNAME).tgz arith-draw/ --transform='s/ariteval/$(MYNAME)/'
+	cd ..; tar cvfz $(MYNAME).tgz arith-draw/ --transform='s/arith-draw/$(MYNAME)/'
 
 # removes the byproducts of compilation
 clean:
