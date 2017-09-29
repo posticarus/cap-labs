@@ -7,16 +7,16 @@ abort:
 	$(error variable ANTLR4 is not set)
 endif
 
-all: antlr
-
-antlr: $(PACKAGE).g4
+$(PACKAGE)Listener.py $(PACKAGE)Lexer.py $(PACKAGE)Lexer.tokens $(PACKAGE)Parser.py $(PACKAGE).tokens: $(PACKAGE).g4
 	$(ANTLR4) $< -Dlanguage=Python3
 
-run: $(MAINFILE).py
+main-deps: $(PACKAGE)Lexer.py $(PACKAGE)Parser.py
+
+run: $(MAINFILE).py main-deps
 	python3 $<
 
-tests: check_ariteval.py
-	python3 $< -q . testfiles/*.txt
+tests: check_ariteval.py main-deps
+	python3 $< . testfiles/*.txt
 
 tar: clean
 	cd ..; tar cvfz $(MYNAME).tgz ariteval/ --transform 's/ariteval/$(MYNAME)/'

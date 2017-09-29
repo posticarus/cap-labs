@@ -137,10 +137,16 @@ def all_checks(code_path, test_files):
         csv_line.append('NA')
 
     for test_file in test_files:
-        nb_mistakes = check_test_file(test_file, code_path)
-        debug()
-        debug('{}: {} mistakes'.format(test_file, nb_mistakes))
-        csv_line.append(nb_mistakes)
+        try:
+            nb_mistakes = check_test_file(test_file, code_path)
+        except subprocess.CalledProcessError:
+            debug()
+            debug('{}: error'.format(test_file))
+            csv_line.append('Error')
+        else:
+            debug()
+            debug('{}: {} mistakes'.format(test_file, nb_mistakes))
+            csv_line.append(nb_mistakes)
 
     debug()
     return csv_line
@@ -149,6 +155,7 @@ def all_checks(code_path, test_files):
 HELP_OPTIONS = {'-h', '-help', '--h', '--help'}
 QUIET_OPTIONS = {'-q', '--quiet'}
 def main():
+    global PRINT_DEBUG
     args = list(sys.argv)
     if set(args) & HELP_OPTIONS:
         print('Syntax: {} [-q|--quiet] path/to/code [path/to/testfile1 [path/to/testfile2 [...]]'
