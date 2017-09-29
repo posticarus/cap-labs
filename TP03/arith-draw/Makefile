@@ -1,6 +1,7 @@
 PACKAGE = AritPlot
 MAINFILE = arit
-MYNAME = JohnDoe	#change with your own name
+#change with your own name:
+MYNAME = JohnDoe
 
 FOO?=ex/check01.txt
 
@@ -27,7 +28,7 @@ tests: test_aritplot.py main-deps
 
 # creates an archive of your arit-draw folder with your name
 tar: clean
-	cd ..; tar cvfz $(MYNAME).tgz arit-draw/ --transform 's/ariteval/$(MYNAME)/'
+	cd ..; tar cvfz $(MYNAME).tgz arith-draw/ --transform='s/ariteval/$(MYNAME)/'
 
 # removes the byproducts of compilation
 clean:
