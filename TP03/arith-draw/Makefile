@@ -1,5 +1,6 @@
 PACKAGE = AritPlot
 MAINFILE = arit
+#change with your own name:
 MYNAME = JohnDoe
 
 FOO?=ex/check01.txt
@@ -15,18 +16,20 @@ $(PACKAGE)Listener.py $(PACKAGE)Visitor.py $(PACKAGE)Lexer.py $(PACKAGE)Lexer.to
 
 main-deps: $(PACKAGE)Lexer.py $(PACKAGE)Parser.py MyAritPlotVisitor.py
 
-run: $(MAINFILE).py main-deps
-	@python3 $^  $(FOO)
+# tests on the file specified in the FOO variable
+# write make run FOO=ex/check02.txt or edit this Makefile
+run: $(MAINFILE).py
+	python3 $^  $(FOO)
 
 
 # tests all files in the ex/ directory
 tests: test_aritplot.py main-deps
 	python3 $< 
 
-
+# creates an archive of your arith-draw folder with your name
 tar: clean
-	cd ..; tar cvfz $(MYNAME).tgz arit-draw/ --transform 's/ariteval/$(MYNAME)/'
+	cd ..; tar cvfz $(MYNAME).tgz arith-draw/ --transform='s/arith-draw/$(MYNAME)/'
 
-
+# removes the byproducts of compilation
 clean:
 	rm -rf *~ $(PACKAGE)*.py *.pyc *.tokens  __pycache*
