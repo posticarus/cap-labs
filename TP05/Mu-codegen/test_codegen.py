@@ -11,7 +11,9 @@ import re
 ALL_FILES = glob.glob('../tests/*.mu')
 
 HERE = os.path.dirname(os.path.realpath(__file__))
-TARGETM = os.path.join(HERE, '..', '..', '..', 'leia')
+
+TARGETM = os.path.join(HERE, '..', '..', 'leia')
+
 ASM = os.path.join(TARGETM, 'assembleur', 'asm.py')
 SIMU = os.path.join(TARGETM, 'simulateur', 'LEIA')
 

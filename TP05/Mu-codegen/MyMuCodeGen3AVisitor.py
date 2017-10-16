@@ -2,7 +2,7 @@ from MuVisitor import MuVisitor
 from MuParser import MuParser
 
 from APICodeLEIA import (
-    LEIAProg, CodeGenContext, CodeGenContextStack,
+    LEIAProg, CodeGenContext,
     Condition,
     R0
     )
@@ -12,7 +12,7 @@ from antlr4.tree.Trees import Trees
 # Visitor for three-adress code generation + allocation.
 
 
-class MyMuCodeGen3AVisitor(MuVisitor, CodeGenContextStack):
+class MyMuCodeGen3AVisitor(MuVisitor):
 
     def __init__(self, d, s, parser):
         super().__init__()
@@ -23,6 +23,7 @@ class MyMuCodeGen3AVisitor(MuVisitor, CodeGenContextStack):
         # 3-address code generation
         self._prog = LEIAProg()
         self._lastlabel = ""
+        self.ctx_stack = []
 
     def get_prog(self):
         return self._prog

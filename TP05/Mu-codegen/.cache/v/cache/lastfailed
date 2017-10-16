@@ -1,5 +1,0 @@
-{
-  "test_codegen.py::TestCodeGen::()::test_alloc[../tests/test01.mu]": true,
-  "test_codegen.py::TestCodeGen::()::test_compile_and_simulate[../tests/test01.mu]": true,
-  "test_codegen.py::TestCodeGen::()::test_expect[../tests/test01.mu]": true
-}

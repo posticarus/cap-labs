@@ -28,40 +28,18 @@ class CodeGenContext():
                                                    # (mixins)
 
         def visitIfStat(...):
-            if_ctx = CodeGenContext(self)  # Create context
+            if_ctx = CodeGenContext()  # Create context
                                            # and push it on stack
             if_ctx.end_label = ...  # fill-in the context with
                                     # what you want
+            self.ctx_stack.append(if_ctx)
             ... self.visit(...) ...
-            if_ctx.pop()  # Remove the context from stack
+            self.ctx_stack.pop()  # Remove the context from stack
 
         def visit...(...):
-            ... = self.context().end_label  # Use the context created above.
+            ... = self.ctx_stack[-1].end_label  # Use the context created above.
     """
 
-    def __init__(self, stack):
-        """Create an element and add it to the stack."""
-        stack._context_stack.append(self)
-        self._stack = stack._context_stack
-
-    def pop(self):
-        """Pop last element from stack, and check that it is the right
-        element (self)."""
-        p = self._stack.pop()
-        assert p is self, (p, self)
-
-
-class CodeGenContextStack():
-    """Manage a stack of CodeGenContext.
-
-    Meant to be used as a base class for a code generation class.
-    """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._context_stack = []
-
-    def context(self):
-        return self._context_stack[-1]
 
 
 class Operand():
