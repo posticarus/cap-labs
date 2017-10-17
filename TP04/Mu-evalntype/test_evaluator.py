@@ -14,9 +14,12 @@ import collections
 ALL_FILES = glob.glob('../ex/test*.mu')
 # only test programs with no expected error (test*.mu)
 
+if 'TEST_FILES' in os.environ:
+    ALL_FILES = glob.glob(os.environ['TEST_FILES'])
+
 HERE = os.path.dirname(os.path.realpath(__file__))
 
-MU_EVAL = 'Main.py'
+MU_EVAL = os.path.join(HERE, 'Main.py')
 
 testresult = collections.namedtuple('testresult', ['exitcode', 'output'])
 

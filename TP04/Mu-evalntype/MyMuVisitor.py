@@ -118,7 +118,7 @@ class MyMuVisitor(MuVisitor):
             raise MuSyntaxError("Unknown multiplication operator '%s'"
                                 % ctx.myop)
 
-    def visitnotExpr(self, ctx):
+    def visitNotExpr(self, ctx):
         return not self.visit(ctx.expr())
 
     def visitUnaryMinusExpr(self, ctx):
