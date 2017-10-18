@@ -18,7 +18,7 @@ def main():
     args = parser.parse_args()
 
     # lex and parse
-    input_s = antlr4.FileStream(args.path)
+    input_s = antlr4.FileStream(args.path, encoding='utf8')
     lexer = MuLexer(input_s)
     stream = antlr4.CommonTokenStream(lexer)
     parser = MuParser(stream)

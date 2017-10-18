@@ -11,8 +11,10 @@ import collections
 # test all files in ex
 # ALL_FILES = glob.glob('../ex/bad_*.mu')
 # only test programs with runtime or typing error
-ALL_FILES = glob.glob('../ex/test*.mu')
+#ALL_FILES = glob.glob('../ex/test*.mu')
 # only test programs with no expected error (test*.mu)
+
+ALL_FILES = glob.glob('../ex/eleves/*/*.mu')
 
 if 'TEST_FILES' in os.environ:
     ALL_FILES = glob.glob(os.environ['TEST_FILES'])
