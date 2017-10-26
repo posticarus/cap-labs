@@ -302,7 +302,7 @@ class Instru3A(Instruction):
         else:
             self.args = [arg for arg in (arg1, arg2, arg3) if arg is not None]
         args = self.args
-        self._left = arg1
+        self._left = args[0]
         if len(self.args) >= 3:
             self._right = (self.args[1], self.args[2])
         elif len(self.args) >= 2:
@@ -512,6 +512,10 @@ class LEIAProg:
             Instru3A("sub", dr, sr1, sr2orimm7))
 
     def addInstructionAND(self, dr, sr1, sr2orimm7):
+        self.add_instruction(
+            Instru3A("and", dr, sr1, sr2orimm7))
+            
+    def addInstructionOR(self, dr, sr1, sr2orimm7):
         self.add_instruction(
             Instru3A("and", dr, sr1, sr2orimm7))
 
