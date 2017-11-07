@@ -14,11 +14,11 @@ ALL_FILES = glob.glob("tests/*.mu")
 #+glob.glob("testsconflictgraph/*.mu")+glob.glob('testsdataflow/*.mu')
 
 HERE = os.path.dirname(os.path.realpath(__file__))
-TARGETM = os.path.join(HERE, '..', '..', '..', 'leia')
+TARGETM = os.path.join(HERE, '..', '..', 'leia')
 ASM = os.path.join(TARGETM, 'assembleur', 'asm.py')
 SIMU = os.path.join(TARGETM, 'simulateur', 'LEIA')
 MU_EVAL = os.path.join(
-    HERE, '..', '..', '..', 'TP04', 'code', 'Mu-evalntype', 'Main.py')
+    HERE, '..', '..', 'TP04', 'code', 'Mu-evalntype', 'Main.py')
 
 
 class TestCodeGen(object):
