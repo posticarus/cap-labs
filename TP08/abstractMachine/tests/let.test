@@ -1,0 +1,2 @@
+let z = 15 + 2
+cr (let w = z + z in w + 2)

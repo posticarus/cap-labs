@@ -1,0 +1,1 @@
+cr (let rec pr = fun n -> print n + pr (n+1) in pr 0)

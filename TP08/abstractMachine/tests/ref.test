@@ -1,0 +1,4 @@
+cr (let r = ref 3 in set r 2 + get r)
+let r = ref 3
+let closure = set r
+cr (closure 2 + closure 1 + get r)

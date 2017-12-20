@@ -1,0 +1,18 @@
+let succ = fun n f x -> f (n f x)
+let zero = fun f x -> x
+let one = succ zero
+
+let add = fun n p -> fun f x -> n f (p f x)
+let mult = fun n p -> n (add p) zero
+let to_int = fun n -> n (fun k -> k + 1) 0
+
+let two = add one one
+cr to_int two
+
+let three = succ two
+let six = mult three two
+let seven = succ six
+cr to_int (mult seven six)
+
+let exp = fun n m -> m n
+cr to_int (exp two three)

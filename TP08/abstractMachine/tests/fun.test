@@ -1,0 +1,6 @@
+let id = fun x -> x
+cr id 3
+let add = fun x y -> x + y
+cr (add 13 4)
+let succ = add 1
+cr (succ (succ 15))
